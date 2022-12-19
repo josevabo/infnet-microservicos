@@ -10,6 +10,7 @@ public class ConsultaResource {
 
     @GetMapping
     public String getAll() {
-        return "Todas as consultas";
+        System.out.println("GET recebido");
+        return "Todas as Consultas";
     }
 }
