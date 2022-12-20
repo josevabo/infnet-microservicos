@@ -1,15 +1,24 @@
 package com.josevabo.paciente.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 public class Paciente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long codigo;
     private String cpf;
     private LocalDate dataNascimento;
     private String nome;
     private String endereco;
+    @ManyToOne(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="cidade_id")
     private Cidade cidade;
+    @OneToMany(fetch= FetchType.LAZY, mappedBy="paciente")
     private List<Prontuario> historicoMedico;
 
     public String getCpf() {

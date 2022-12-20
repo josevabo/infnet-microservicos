@@ -1,22 +1,30 @@
 package com.josevabo.paciente.resource;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.josevabo.paciente.dto.PacienteDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.josevabo.paciente.service.PacienteService;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteResource {
 
+    @Autowired
+    PacienteService service;
+
     @GetMapping
-    public String listAll() {
-        System.out.println("GET recebido");
-        return "Todas os Pacientes";
+    public ResponseEntity listAll() {
+        return ResponseEntity.ok(service.listAll());
     }
 
     @GetMapping("/{cpf}")
-    public String findByCpf(@PathVariable String cpf) {
-        return "Paciente pelo cpf";
+    public ResponseEntity findByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(service.findByCpf(cpf));
+    }
+
+    @PostMapping
+    public ResponseEntity create(@RequestBody PacienteDto novoPaciente) {
+        return ResponseEntity.ok(service.save(novoPaciente));
     }
 }
