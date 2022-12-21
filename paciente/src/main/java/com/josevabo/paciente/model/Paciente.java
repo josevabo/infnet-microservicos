@@ -37,6 +37,11 @@ public class Paciente {
         this.nome = nome;
         this.cpf = cpf;
     }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     public String getCpf() {
         return cpf;
     }

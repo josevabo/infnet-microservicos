@@ -33,7 +33,7 @@ public class PacienteResource extends AbstractResource{
         var entidade = map(novoPacienteDto, Paciente.class);
 
         return ResponseEntity.ok(
-                map(service.save(entidade), PacienteDto.class)
+                map(service.create(entidade), PacienteDto.class)
         );
     }
 }

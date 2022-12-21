@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PacienteService {
@@ -29,8 +30,9 @@ public class PacienteService {
         return paciente;
     }
 
-    public Paciente save(Paciente entidade) {
+    public Paciente create(Paciente entidade) {
         logger.info("Criando paciente de nome: {}", entidade.getNome());
+        if(entidade.getCodigo() != null) throw new IllegalArgumentException("codigo não pode ser informado ao criar paciente");
         return repository.save(entidade);
     }
 }
