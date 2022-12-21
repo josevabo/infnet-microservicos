@@ -1,7 +1,6 @@
 package com.josevabo.paciente.service;
 
 import com.josevabo.paciente.model.Paciente;
-import com.josevabo.paciente.dto.PacienteDto;
 import com.josevabo.paciente.repository.PacienteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,19 +17,20 @@ public class PacienteService {
     @Autowired
     PacienteRepository repository;
 
-    public List<PacienteDto> listAll() {
-        return repository.findAll().stream().map(PacienteDto::new).toList();
+    public List<Paciente> listAll() {
+        logger.info("Listando todos pacientes");
+        return repository.findAll();
     }
 
-    public PacienteDto findByCpf(String cpf) {
+    public Paciente findByCpf(String cpf) {
+        logger.info("Buscando paciente por cpf: {}", cpf);
         Paciente paciente = repository.findByCpf(cpf);
         if (paciente == null) return null;
-        return new PacienteDto(paciente);
+        return paciente;
     }
 
-    public PacienteDto save(PacienteDto novoPaciente) {
-        logger.info("Criando no paciente de nome: {}", novoPaciente.getNome());
-        Paciente entidade = novoPaciente.toEntity();
-        return new PacienteDto(repository.save(entidade));
+    public Paciente save(Paciente entidade) {
+        logger.info("Criando paciente de nome: {}", entidade.getNome());
+        return repository.save(entidade);
     }
 }

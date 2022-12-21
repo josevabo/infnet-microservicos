@@ -10,20 +10,30 @@ import java.util.Objects;
  * A DTO for the {@link Cidade} entity
  */
 public class CidadeDto implements Serializable {
-    private final String nome;
-    private final UnidadeFederacao uf;
+    private String nome;
+    private String uf;
 
-    public CidadeDto(String nome, UnidadeFederacao uf) {
-        this.nome = nome;
-        this.uf = uf;
+    public CidadeDto() {
     }
 
     public String getNome() {
         return nome;
     }
 
-    public UnidadeFederacao getUf() {
+    public String getUf() {
         return uf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public void setUf(UnidadeFederacao uf) {
+        if (uf != null) this.uf = uf.sigla();
     }
 
     @Override

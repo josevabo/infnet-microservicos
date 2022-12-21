@@ -22,16 +22,8 @@ public class PacienteDto implements Serializable {
     private CidadeDto cidade;
     private List<ProntuarioDto> historicoMedico;
 
-    public PacienteDto(Long codigo, String cpf, LocalDate dataNascimento, String nome, String endereco, CidadeDto cidade, List<ProntuarioDto> historicoMedico) {
-        this.codigo = codigo;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.cidade = cidade;
-        this.historicoMedico = historicoMedico;
+    public PacienteDto() {
     }
-
     public Long getCodigo() {
         return codigo;
     }
@@ -58,6 +50,34 @@ public class PacienteDto implements Serializable {
 
     public List<ProntuarioDto> getHistoricoMedico() {
         return historicoMedico;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setCidade(CidadeDto cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setHistoricoMedico(List<ProntuarioDto> historicoMedico) {
+        this.historicoMedico = historicoMedico;
     }
 
     @Override
@@ -91,13 +111,4 @@ public class PacienteDto implements Serializable {
                 "historicoMedico = " + historicoMedico + ")";
     }
 
-    public PacienteDto(Paciente paciente) {
-        BeanUtils.copyProperties(paciente, this);
-    }
-
-    public Paciente toEntity() {
-        Paciente entity = new Paciente();
-        BeanUtils.copyProperties(this, entity);
-        return entity;
-    }
 }

@@ -11,16 +11,12 @@ import java.util.Objects;
  * A DTO for the {@link Prontuario} entity
  */
 public class ProntuarioDto implements Serializable {
-    private final Long codigo;
-    private final String descricao;
-    private final String crmMedico;
-    private final LocalDate data;
+    private Long codigo;
+    private String descricao;
+    private String crmMedico;
+    private LocalDate data;
 
-    public ProntuarioDto(Long codigo, String descricao, String crmMedico, LocalDate data) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.crmMedico = crmMedico;
-        this.data = data;
+    public ProntuarioDto() {
     }
 
     public Long getCodigo() {
@@ -37,6 +33,22 @@ public class ProntuarioDto implements Serializable {
 
     public LocalDate getData() {
         return data;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setCrmMedico(String crmMedico) {
+        this.crmMedico = crmMedico;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     @Override

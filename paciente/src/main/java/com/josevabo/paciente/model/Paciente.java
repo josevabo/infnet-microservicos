@@ -9,11 +9,14 @@ import java.util.List;
 public class Paciente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
+    @Column(nullable = false, unique = true)
     private String cpf;
     private LocalDate dataNascimento;
+    @Column(nullable = false)
     private String nome;
+
     private String endereco;
     @ManyToOne(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="cidade_id")
@@ -21,6 +24,19 @@ public class Paciente {
     @OneToMany(fetch= FetchType.LAZY, mappedBy="paciente")
     private List<Prontuario> historicoMedico;
 
+
+    public Paciente() {
+    }
+
+    public Paciente(String nome) {
+        super();
+        this.nome = nome;
+    }
+
+    public Paciente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
     public String getCpf() {
         return cpf;
     }
@@ -65,21 +81,8 @@ public class Paciente {
         this.historicoMedico = historicoMedico;
     }
 
-    public Paciente() {
-    }
-
-    public Paciente(String nome) {
-        super();
-        this.nome = nome;
-    }
-
-    public Paciente(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-    }
-
-    public String getCodigo() {
-        return cpf;
+    public Long getCodigo() {
+        return codigo;
     }
 
     public String getNome() {

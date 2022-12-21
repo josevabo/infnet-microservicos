@@ -2,7 +2,9 @@ package com.josevabo.paciente.model.converter;
 
 import com.josevabo.paciente.model.UnidadeFederacao;
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
+@Converter
 public class UnidadeFederacaoConverter implements AttributeConverter<UnidadeFederacao, String> {
 
     @Override
