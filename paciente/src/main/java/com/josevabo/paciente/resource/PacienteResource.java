@@ -21,10 +21,16 @@ public class PacienteResource extends AbstractResource{
         );
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     public ResponseEntity findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
                 map(service.findByCpf(cpf), PacienteDto.class)
+        );
+    }
+    @GetMapping("/{codigo}")
+    public ResponseEntity findByCodigo(@PathVariable Long codigo) {
+        return ResponseEntity.ok(
+                map(service.findByCodigo(codigo), PacienteDto.class)
         );
     }
 

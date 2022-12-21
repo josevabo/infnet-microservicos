@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     Paciente findByCpf(String cpf);
+
+    Paciente findByCodigo(Long codigo);
 }

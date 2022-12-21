@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long codigo;
 
     @Column(nullable = false)
     private String nome;
@@ -18,12 +18,12 @@ public class Cidade {
 
     public Cidade() {
     }
-    public Long getId() {
-        return id;
+    public Long getCodigo() {
+        return codigo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -38,7 +38,9 @@ public class Cidade {
     }
 
     public void setUf(String uf) {
-        this.uf = UnidadeFederacao.fromSigla(uf);
+        if(uf != null){
+            this.uf = UnidadeFederacao.fromSigla(uf);
+        }
     }
 
 

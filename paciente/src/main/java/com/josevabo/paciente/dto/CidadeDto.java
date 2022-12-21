@@ -10,6 +10,7 @@ import java.util.Objects;
  * A DTO for the {@link Cidade} entity
  */
 public class CidadeDto implements Serializable {
+    private Long codigo;
     private String nome;
     private String uf;
 
@@ -34,6 +35,14 @@ public class CidadeDto implements Serializable {
 
     public void setUf(UnidadeFederacao uf) {
         if (uf != null) this.uf = uf.sigla();
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     @Override
