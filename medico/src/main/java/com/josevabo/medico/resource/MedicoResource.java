@@ -1,16 +1,38 @@
 package com.josevabo.medico.resource;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.josevabo.medico.dto.MedicoDto;
+import com.josevabo.medico.model.Medico;
+import com.josevabo.medico.service.MedicoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medicos")
-public class MedicoResource {
+public class MedicoResource extends AbstractResource{
+
+    @Autowired
+    MedicoService service;
 
     @GetMapping
-    public String getAll() {
-        System.out.println("GET recebido");
-        return "Todas os Medicos";
+    public ResponseEntity listAll() {
+        return ResponseEntity.ok(
+                mapList(service.listAll(), MedicoDto.class)
+        );
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity findByCodigo(@PathVariable Long codigo) {
+        return ResponseEntity.ok(
+                map(service.findByCodigo(codigo), MedicoDto.class)
+        );
+    }
+
+    @PostMapping
+    public ResponseEntity create(@RequestBody MedicoDto novoMedicoDto) {
+        var entidade = map(novoMedicoDto, Medico.class);
+        return ResponseEntity.ok(
+                map(service.create(entidade), MedicoDto.class)
+        );
     }
 }
