@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ModelMapper extends org.modelmapper.ModelMapper {
-    public ModelMapper() {
-        super();
+public class CustomMapper extends org.modelmapper.ModelMapper {
+    public CustomMapper() {
     }
 
     public <T,R> List<R> mapList(List<T> list, Class<R> returnType){

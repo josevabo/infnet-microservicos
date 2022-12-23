@@ -15,7 +15,12 @@ public class ConsultaResource extends AbstractResource {
     ConsultaService service;
 
     @GetMapping
-    public ResponseEntity listAll() {
+    public ResponseEntity listAll(@RequestParam Long codigoPaciente) {
+
+        if (codigoPaciente != null)
+            return ResponseEntity.ok(
+                    mapList(service.findByCodigoPaciente(codigoPaciente), ConsultaDto.class)
+            );
         return ResponseEntity.ok(
                 mapList(service.listAll(), ConsultaDto.class)
         );
@@ -27,6 +32,7 @@ public class ConsultaResource extends AbstractResource {
                 service.findByCodigo(codigo)
         );
     }
+
 
     @PostMapping
     public ResponseEntity create(@RequestBody ConsultaCreateDto novaConsultaDto) {

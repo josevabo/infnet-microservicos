@@ -1,5 +1,6 @@
 package com.josevabo.paciente.resource;
 
+import com.josevabo.paciente.dto.ConsultaDto;
 import com.josevabo.paciente.dto.PacienteDto;
 import com.josevabo.paciente.model.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,15 @@ public class PacienteResource extends AbstractResource{
         );
     }
 
+    @GetMapping("/{codigoPaciente}/consultas")
+    public ResponseEntity listConsultasByCodigoPaciente(@PathVariable Long codigoPaciente) {
+        var consultas = service.listConsultasByCodigoPaciente(codigoPaciente);
+        return ResponseEntity.ok(consultas);
+    }
+
     @PostMapping
     public ResponseEntity create(@RequestBody PacienteDto novoPacienteDto) {
         var entidade = map(novoPacienteDto, Paciente.class);
-
         return ResponseEntity.ok(
                 map(service.create(entidade), PacienteDto.class)
         );
